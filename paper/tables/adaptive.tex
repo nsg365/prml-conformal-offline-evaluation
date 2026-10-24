@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Adaptive learned margin: change in power compared with the plain learned margin (percentage points). $m$: number of past decisions; Large: history from five other datasets ($m\approx2{,}240$); Real: real-data history (24--78). Model: difficulty model (GBT = gradient-boosted trees). Coverage stays within 0.91--1.00.}
+\label{tab:adaptive}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrrrr}
+\toprule
+Estimator & Model & $m{=}20$ & $m{=}50$ & $m{=}100$ & Large & Real\\
+\midrule
+Click model (GBT) & Ridge & $-$5.2 & $-$0.3 & +1.7 & +9.0 & +10.0\\
+ & GBT & $-$2.5 & +0.8 & +5.4 & +10.8 & $-$6.7\\
+Reweighting & Ridge & $-$4.8 & +0.9 & +1.4 & +1.0 & $-$16.7\\
+ & GBT & $-$4.0 & $-$1.4 & +0.8 & +1.0 & $-$13.3\\
+Combined (GBT) & Ridge & $-$6.8 & $-$1.2 & $-$0.6 & +0.9 & $-$3.3\\
+ & GBT & $-$4.9 & $-$3.6 & $-$1.5 & +1.0 & $-$13.3\\
+\bottomrule
+\end{tabular}
+\end{table}

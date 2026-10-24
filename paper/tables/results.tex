@@ -1,0 +1,25 @@
+\begin{table*}[t]
+\centering
+\caption{Main results. Coverage: how often estimate $-$ margin was below the true improvement (target 0.95; values at or above it in bold). Power: how often a better recommender was launched. Usual: 1.645 standard errors; Hour: usual margin with hour-grouped standard errors (real data only); Bern.: Bernstein bound; Ours: learned margin.}
+\label{tab:results}
+\small
+\begin{tabular}{lrrrrrrrr}
+\toprule
+& \multicolumn{4}{c}{Coverage} & \multicolumn{4}{c}{Power} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+Estimator & Usual & Hour & Bern. & Ours & Usual & Hour & Bern. & Ours \\
+\midrule
+\multicolumn{9}{l}{\emph{Real data (60 decisions, history = earlier windows)}} \\
+Click model (LR) & .617 & .717 & .833 & \textbf{.967} & .833 & .800 & .667 & .467 \\
+Click model (GBT) & .600 & .650 & .767 & \textbf{.967} & .800 & .667 & .667 & .133 \\
+Reweighting & .767 & .900 & \textbf{1.00} & \textbf{.983} & .700 & .567 & .033 & .300 \\
+Combined (GBT) & .800 & .900 & \textbf{1.00} & \textbf{.983} & .667 & .567 & .033 & .267 \\
+\midrule
+\multicolumn{9}{l}{\emph{Controlled experiments (exact truth, $m=50$ past decisions)}} \\
+Click model (LR) & .748 & -- & .810 & \textbf{.962} & .111 & -- & .024 & .001 \\
+Click model (GBT) & .675 & -- & .790 & \textbf{.961} & .742 & -- & .650 & .293 \\
+Reweighting & .870 & -- & \textbf{.968} & \textbf{.961} & .941 & -- & .745 & .807 \\
+Combined (GBT) & .913 & -- & \textbf{.988} & \textbf{.960} & .885 & -- & .616 & .808 \\
+\bottomrule
+\end{tabular}
+\end{table*}

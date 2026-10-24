@@ -1,0 +1,4 @@
+# Optional: the reference library used only by tests/test_against_obp.py.
+# It pulls in PyTorch (about 1 GB), which the project itself does not use.
+-r requirements.txt
+obp==0.4.1

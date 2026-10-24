@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{How wrong the real estimates are compared with the error they report (84 real decisions; bias and RMSE in units of $10^{-4}$ click rate). Inflation $=$ actual spread of errors / reported standard error, using the usual, page-grouped or hour-grouped standard error. 1.0 means the reported error is honest.}
+\label{tab:inflation}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+& & & & \multicolumn{3}{c}{Inflation}\\
+\cmidrule(lr){5-7}
+Estimator & Bias & RMSE & se & Usual & Page & Hour\\
+\midrule
+Click model (LR) & -0.2 & 10.7 & 2.5 & 2.57 & 2.38 & 1.96\\
+Click model (GBT) & +0.0 & 10.9 & 2.5 & 2.62 & 2.41 & 1.99\\
+Reweighting & +1.5 & 13.6 & 6.9 & 1.67 & 1.62 & 1.22\\
+Combined (GBT) & -0.7 & 16.1 & 7.4 & 1.80 & 1.76 & 1.13\\
+\bottomrule
+\end{tabular}
+\end{table}
