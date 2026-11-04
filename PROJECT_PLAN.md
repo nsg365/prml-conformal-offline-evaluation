@@ -2,7 +2,7 @@
 
 **Working title:** *Trust, but Calibrate: Using Past A/B Tests to Make Off-Policy Launch Decisions Reliable*
 
-**Evaluation:** Tuesday, 17 November 2026 (live demo + viva). Target: experiments frozen by ~Nov 5, paper/slides by ~Nov 10.
+**Evaluation:** Tuesday, 10 November 2026 (live demo + viva).
 
 ## Problem
 

@@ -1,4 +1,4 @@
-# Status — 25 October 2026
+# Status — 4 November 2026 (evaluation: Tuesday 10 November 2026)
 
 ## Done
 
@@ -19,11 +19,10 @@
 - Limitation shown: under covariate shift between calibration and test, CLR coverage falls to 0.78–0.88.
 - v2 additions: cluster-robust Wald baselines (per impression, per hour) show the real-data excess error comes mainly from hour-to-hour drift; hour-clustered Wald still covers only 0.65–0.90. Adaptive CLR (learned difficulty with ridge / gradient-boosted trees) gains power only with large histories (+9–11 points for DM-GBT at m ≈ 2,240) and loses power with small ones.
 
-## Remaining
+## Remaining (before 10 November)
 
-0. Ask a TA/professor whether this project fits the "ML models only" rule (see DEMO_AND_VIVA.md, "Is this reinforcement learning?").
-1. Read DEMO_AND_VIVA.md, GLOSSARY.md, the paper and slides; ask about anything unclear.
-2. Final literature re-check before submission (conformal + OPE decisions).
-3. Proofread; optional polish (figure order on page 4).
-4. Upload `deliverables/*_overleaf.zip` to Overleaf and recompile there.
-5. Rehearse `make demo`.
+1. Ask a TA whether the project fits the "ML models only" rule (see DEMO_AND_VIVA.md, "Is this reinforcement learning?").
+2. Upload `deliverables/paper_overleaf.zip` and `deliverables/slides_overleaf.zip` to Overleaf and check they compile there.
+3. Rehearse `make app` and `make demo`, and the viva answers in DEMO_AND_VIVA.md.
+
+Done on 4 November: evaluation date updated on the slides; final literature check (no prior work combining conformal calibration with a history of past launch decisions; two related single-log conformal papers, Zhang et al. 2023 and Foffano et al. 2023, now cited); paper still 5 pages.
