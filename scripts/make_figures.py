@@ -64,12 +64,11 @@ def use_dark_theme() -> None:
 
 
 def save(fig, name: str) -> None:
-    """PDF for the paper and slides, PNG for the web app; dark mode writes *_dark.png only."""
+    """Vector PDF for the paper and slides; dark mode writes the *_dark.png used by the web app."""
     if DARK:
         fig.savefig(OUT / f"{name}_dark.png", bbox_inches="tight", dpi=200)
         return
     fig.savefig(OUT / f"{name}.pdf", bbox_inches="tight")
-    fig.savefig(OUT / f"{name}.png", bbox_inches="tight", dpi=200)
 
 
 plt.rcParams.update({

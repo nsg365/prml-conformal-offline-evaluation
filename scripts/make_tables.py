@@ -14,68 +14,44 @@ OUT = ROOT / "paper/tables"
 # The four core estimators, in plain language (see the terms table in the paper).
 CONFIGS = [("dm", "logreg", "Click model (LR)"), ("dm", "hgb", "Click model (GBT)"), ("ips", "none", "Reweighting"),
            ("dr", "hgb", "Combined (GBT)")]
-RULES = [("wald", "Usual"), ("emp_bernstein", "Bern."), ("clr", "Ours")]
-OBD_RULES = [("wald", "Usual"), ("wald_hour", "Hour"), ("emp_bernstein", "Bern."), ("clr", "Ours")]
+SLIDE_TABLES = ROOT / "slides/tables"
 
 
-def rule_table(frame: pd.DataFrame, caption: str, label: str, metrics: list[tuple[str, str]],
-               rules: list[tuple[str, str]] = RULES) -> str:
-    RULES = rules  # noqa: N806
-    cols = "l" + "r" * len(RULES) * len(metrics)
-    lines = [r"\begin{table*}[t]", r"\centering", rf"\caption{{{caption}}}", rf"\label{{{label}}}", r"\small",
-             rf"\begin{{tabular}}{{{cols}}}", r"\toprule"]
-    header = " & ".join(rf"\multicolumn{{{len(RULES)}}}{{c}}{{{name}}}" for _, name in metrics)
-    lines.append(rf"& {header} \\")
-    rules_row = " & ".join(" & ".join(r for _, r in RULES) for _ in metrics)
-    lines.append(rf"Estimator & {rules_row} \\")
-    lines.append(r"\midrule")
-    for est, rm, label_ in CONFIGS:
-        sub = frame[(frame["estimator"] == est) & (frame["reward_model"] == rm)].set_index("rule")
-        cells = []
-        for metric, _ in metrics:
-            for rule, _ in RULES:
-                v = sub.loc[rule, metric]
-                text = f"{v:.3f}".lstrip("0") if v < 1 else "1.00"
-                if metric == "coverage" and v >= 0.95 - 1e-9:
-                    text = rf"\textbf{{{text}}}"
-                cells.append(text)
-        lines.append(rf"{label_} & {' & '.join(cells)} \\")
-    lines += [r"\bottomrule", r"\end{tabular}", r"\end{table*}"]
-    return "\n".join(lines) + "\n"
+def tabular_only(lines: list[str]) -> str:
+    """The tabular part of a table float, for \\input inside a Beamer frame."""
+    start = next(i for i, l in enumerate(lines) if l.startswith(r"\begin{tabular}"))
+    end = next(i for i, l in enumerate(lines) if l.startswith(r"\end{tabular}"))
+    return "\n".join(lines[start:end + 1]) + "\n"
 
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
+    SLIDE_TABLES.mkdir(parents=True, exist_ok=True)
     semi = pd.read_csv(STUDY / "semi_within.csv").query("alpha == 0.05 and n_calib == 50")
-    (OUT / "semi.tex").write_text(rule_table(
-        semi, "Controlled experiments with exact truth ($m=50$ past decisions, 100 random splits per dataset). "
-              "Usual: normal-approximation margin; Bern.: Bernstein bound; Ours: learned margin. Coverage at or above the 0.95 target in bold.",
-        "tab:semi", [("coverage", "Coverage"), ("false_launch_rate", "Wrong-launch rate"), ("power", "Power")]))
     obd = pd.read_csv(STUDY / "obd_temporal.csv").query("alpha == 0.05")
-    (OUT / "obd.tex").write_text(rule_table(
-        obd, "Real-data results: each 12-hour window uses only earlier windows as its history; 60 test decisions "
-             "(30 where the new recommender was not better). Hour: usual margin with hour-clustered standard errors. "
-             "Wrong launches are at most 1 of 30 for every rule. Coverage at or above 0.95 in bold.",
-        "tab:obd", [("coverage", "Coverage"), ("power", "Power")], OBD_RULES))
 
-    # Combined results table: real data (temporal) and controlled experiments (m = 50).
+    # Main results table: real data (temporal) and controlled experiments (m = 50).
     blocks = [("Real data (60 decisions, history = earlier windows)", obd),
               ("Controlled experiments (exact truth, $m=50$ past decisions)", semi)]
     rules = [("wald", "Usual"), ("wald_hour", "Hour"), ("emp_bernstein", "Bern."), ("clr", "Ours")]
+    metrics = [("coverage", "Coverage"), ("false_launch_rate", "Wrong-launch rate"), ("power", "Power")]
+    n_cols = 1 + len(rules) * len(metrics)
     lines = [r"\begin{table*}[t]", r"\centering",
              r"\caption{Main results. Coverage: how often estimate $-$ margin was below the true improvement (target 0.95; "
-             r"values at or above it in bold). Power: how often a better recommender was launched. Usual: 1.645 standard errors; "
-             r"Hour: usual margin with hour-grouped standard errors (real data only); Bern.: Bernstein bound; Ours: learned margin.}",
-             r"\label{tab:results}", r"\small", r"\begin{tabular}{lrrrrrrrr}", r"\toprule",
-             r"& \multicolumn{4}{c}{Coverage} & \multicolumn{4}{c}{Power} \\",
-             r"\cmidrule(lr){2-5}\cmidrule(lr){6-9}",
-             "Estimator & " + " & ".join(n for _, n in rules) + " & " + " & ".join(n for _, n in rules) + r" \\"]
+             r"values at or above it in bold). Wrong-launch rate: share of recommenders that were not better but were launched. "
+             r"Power: how often a better recommender was launched. Usual: 1.645 standard errors; Hour: usual margin with "
+             r"hour-grouped standard errors (real data only); Bern.: Bernstein bound; Ours: learned margin.}",
+             r"\label{tab:results}", r"\small", r"\setlength{\tabcolsep}{4.5pt}",
+             r"\begin{tabular}{l" + "r" * (n_cols - 1) + "}", r"\toprule",
+             "& " + " & ".join(rf"\multicolumn{{{len(rules)}}}{{c}}{{{name}}}" for _, name in metrics) + r" \\",
+             "".join(rf"\cmidrule(lr){{{2 + i * len(rules)}-{1 + (i + 1) * len(rules)}}}" for i in range(len(metrics))),
+             "Estimator & " + " & ".join(" & ".join(n for _, n in rules) for _ in metrics) + r" \\"]
     for title, frame in blocks:
-        lines += [r"\midrule", rf"\multicolumn{{9}}{{l}}{{\emph{{{title}}}}} \\"]
+        lines += [r"\midrule", rf"\multicolumn{{{n_cols}}}{{l}}{{\emph{{{title}}}}} \\"]
         for est, rm, name in CONFIGS:
             sub = frame[(frame["estimator"] == est) & (frame["reward_model"] == rm)].set_index("rule")
             cells = []
-            for metric in ("coverage", "power"):
+            for metric, _ in metrics:
                 for rule, _ in rules:
                     if rule not in sub.index:
                         cells.append("--")
@@ -88,6 +64,7 @@ def main() -> None:
             lines.append(rf"{name} & {' & '.join(cells)} \\")
     lines += [r"\bottomrule", r"\end{tabular}", r"\end{table*}"]
     (OUT / "results.tex").write_text("\n".join(lines) + "\n")
+    (SLIDE_TABLES / "results.tex").write_text(tabular_only(lines))
 
     # Real-data error inflation: realised error spread relative to reported uncertainty.
     exp = pd.read_parquet(ROOT / "experiments/obd_experiments.parquet")
@@ -142,7 +119,8 @@ def main() -> None:
                 cells.append(f"{diff:+.1f}".replace("-", "$-$"))
             lines.append(f"{name if kind == 'aclr_ridge' else ''} & {kname} & " + " & ".join(cells) + r"\\")
     lines += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
-    (OUT / "adaptive.tex").write_text("\n".join(lines) + "\n")
+    # The paper shows this comparison as a figure; the full numbers (ridge too) go on a backup slide.
+    (SLIDE_TABLES / "adaptive.tex").write_text(tabular_only(lines))
     print(f"tables written to {OUT}")
 
 

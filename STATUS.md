@@ -7,7 +7,7 @@
 - **Code:** estimators (`src/ope.py`, verified against obp), launch rules (`src/decision.py`), real and semi-synthetic experiment builders, analysis, figures, tables, live demo. Reproducible through the `Makefile`.
 - **Experiments (complete):** 84 real launch experiments (`experiments/obd_experiments.parquet`); 2,688 semi-synthetic experiments (`experiments/semisynthetic_experiments.parquet`); study outputs in `reports/launch_study/`.
 - **Paper:** `paper/main.pdf`, 5 pages IEEE conference format, rewritten in plain language with a terms table; RL vocabulary removed; 6 figures (pipeline, error histogram, hourly drift, decision chart, coverage vs history, adaptive gain).
-- **Slides:** `slides/main.pdf`, 20 frames, plain language, analogy, pipeline diagram, error histogram, hourly drift, decision chart, "where the ML is" slide.
+- **Slides:** `slides/main.pdf`, 22 frames (incl. 2 backup tables), plain language, analogy, pipeline diagram, error histogram, hourly drift, decision chart, "where the ML is" slide.
 - **Web demo:** `app/app.py` (`make app`), dark theme, landing page, live decision with reveal.
 - **Viva notes:** [DEMO_AND_VIVA.md](DEMO_AND_VIVA.md); **glossary:** [GLOSSARY.md](GLOSSARY.md).
 - The null-only and weighted variants were dropped from the paper and slides for simplicity (their code and results remain in `scripts/launch_study.py` and `reports/launch_study/`).

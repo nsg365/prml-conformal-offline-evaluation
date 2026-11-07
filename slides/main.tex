@@ -311,6 +311,25 @@ The usual margins launch a worse recommender. The learned margin holds.
 \textbf{Next:} weight past decisions by similarity; combine with hour-grouped standard errors.
 \end{frame}
 
+\begin{frame}{Backup: all main results}
+\centering
+\resizebox{\textwidth}{!}{\input{tables/results}}
+
+\vspace{0.6em}
+\raggedright
+\footnotesize Coverage: margin big enough (target 0.95, bold if met). Wrong-launch rate: not-better recommenders that were launched. Power: better recommenders that were launched. Usual = 1.645 se; Hour = hour-grouped se; Bern. = Bernstein bound; Ours = learned margin.
+\end{frame}
+
+\begin{frame}{Backup: adaptive margin, ridge vs boosted trees}
+\centering
+\small
+\input{tables/adaptive}
+
+\vspace{0.6em}
+\raggedright
+\footnotesize Change in power (percentage points) of the adaptive margin compared with the plain learned margin. $m$ = past decisions; Large = history from five other datasets ($m\approx2{,}240$); Real = real-data history (24--78). Coverage stays within 0.91--1.00. Both difficulty models gain only with a large history.
+\end{frame}
+
 \begin{frame}{Backup: what is new compared with prior work}
 \small
 \begin{tabular}{p{0.35\textwidth}p{0.58\textwidth}}

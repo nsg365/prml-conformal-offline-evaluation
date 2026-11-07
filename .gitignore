@@ -20,3 +20,5 @@ slides/*.snm
 slides/*.toc
 slides/*.fls
 slides/*.fdb_latexmk
+slides/*.vrb
+paper/*.out

@@ -114,8 +114,8 @@ Honest limitations:
 │   ├── obd_experiments.py     ← 84 real launch decisions → experiments/obd_experiments.parquet
 │   ├── semisynthetic_experiments.py ← 2,688 controlled decisions → experiments/semisynthetic_experiments.parquet
 │   ├── launch_study.py        ← compares all rules → reports/launch_study/*.csv
-│   ├── make_tables.py         ← LaTeX tables → paper/tables/
-│   ├── make_figures.py        ← figures → paper/figures/ (PDF + PNG + dark PNG for the app)
+│   ├── make_tables.py         ← LaTeX tables → paper/tables/ and slides/tables/
+│   ├── make_figures.py        ← figures → paper/figures/ (vector PDF; dark PNG for the web app)
 │   └── demo_launch.py         ← terminal demo (its functions are reused by the web app)
 │
 ├── app/app.py                 ← Streamlit web demo (make app)
@@ -124,7 +124,7 @@ Honest limitations:
 ├── experiments/               ← experiment outputs (committed; small)
 ├── reports/                   ← audit + launch-study result tables (committed)
 ├── paper/                     ← IEEE paper: main.tex, references.bib, figures/, tables/, main.pdf
-├── slides/                    ← Beamer slides: main.tex, figures/, main.pdf
+├── slides/                    ← Beamer slides: main.tex, figures/, tables/, main.pdf
 ├── deliverables/              ← final PDFs + Overleaf-ready zips + source-code zip
 │
 ├── data/                      ← NOT in git (created by make data)
@@ -295,7 +295,7 @@ Names used in the CSVs:
 
 ## 10. Paper and slides
 
-- Final PDFs: `deliverables/paper.pdf` (5-page IEEE conference format) and `deliverables/slides.pdf` (20 Beamer frames).
+- Final PDFs: `deliverables/paper.pdf` (5-page IEEE conference format) and `deliverables/slides.pdf` (22 Beamer frames).
 - **Overleaf:** upload `deliverables/paper_overleaf.zip` or `deliverables/slides_overleaf.zip` as a new project; the main file is `main.tex`.
 - **Locally:** `make paper` / `make slides` (needs TeX Live with IEEEtran, beamer and tikz).
 - To refresh the zips after editing:

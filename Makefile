@@ -53,11 +53,14 @@ figures:
 	$(PYTHON) scripts/make_tables.py
 	$(PYTHON) scripts/make_figures.py
 
+# LaTeX helper files are deleted after each build; only main.pdf is kept.
+LATEX_LEFTOVERS = main.aux main.bbl main.blg main.fdb_latexmk main.fls main.log main.out main.nav main.snm main.toc main.vrb
+
 paper:
-	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex && rm -f $(LATEX_LEFTOVERS)
 
 slides:
-	cd slides && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+	cd slides && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex && rm -f $(LATEX_LEFTOVERS)
 
 demo:
 	$(PYTHON) scripts/demo_launch.py --campaign men --window 12 --direction random-to-bts
