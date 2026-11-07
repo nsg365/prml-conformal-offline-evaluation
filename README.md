@@ -22,7 +22,6 @@ Everything uses classical machine learning (logistic regression, gradient-booste
 10. [Paper and slides](#10-paper-and-slides)
 11. [Troubleshooting](#11-troubleshooting)
 12. [Data, licence and citations](#12-data-licence-and-citations)
-13. [Project history and decisions](#13-project-history-and-decisions)
 
 ---
 
@@ -172,6 +171,8 @@ rm -rf data/raw         # frees 11 GB; everything else only reads data/processed
 ```
 
 Nothing needs internet after `make data` (except `make semisynthetic`, which downloads six small OpenML datasets the first time). The web app runs entirely on your laptop.
+
+Tested on macOS (Apple M4) with Python 3.11.14 and the packages in `requirements-lock.txt`; installing from `requirements.txt` was checked in a fresh environment.
 
 ---
 
@@ -328,14 +329,3 @@ Names used in the CSVs:
 - **Open Bandit Dataset** — Saito, Aihara, Matsutani and Narita, *Open Bandit Dataset and Pipeline: Towards Realistic and Reproducible Off-Policy Evaluation*, NeurIPS Datasets and Benchmarks Track, 2021. Licence: CC BY 4.0. Not stored in this repository; downloaded by `make data`.
 - **OpenML datasets** (letter, pendigits, optdigits, satimage, mfeat-factors, segment) — downloaded automatically by scikit-learn's `fetch_openml` and cached in `~/scikit_learn_data`.
 - Key method references (full list in `paper/references.bib`): conformal prediction (Vovk et al. 2005; Lei et al. 2018; Angelopoulos & Bates 2023), doubly robust estimation (Dudík et al. 2011), conformal prediction under shift (Tibshirani et al. 2019; Barber et al. 2023), cluster-robust standard errors (Cameron & Miller 2015).
-
----
-
-## 13. Project history and decisions
-
-- **Course requirement:** novelty, technical complexity and a substantial contribution, not just comparing existing models; classical ML only.
-- **Earlier ideas dropped:** GPU job scheduling with runtime prediction (too little ML); TikTok breakout prediction (the main result turned out to be circular — a simple ratio rule matched the model); estimator selection for off-policy evaluation (already published: PAS-IF 2023, AutoOPE 2024).
-- **Chosen contribution:** calibrating the *launch decision* using past decisions (conformal prediction), tested on real data with real ground truth. Literature boundary: [PROJECT_PLAN.md](PROJECT_PLAN.md).
-- **Findings along the way:** real errors are about 2× the reported standard error; clustering by impression does not explain it, clustering by hour mostly does (behaviour drifts within a window); click-model bias remains; the adaptive margin needs a large history.
-- **Writing choice:** the paper and slides avoid reinforcement-learning vocabulary ("policy", "reward", "bandit") and use plain terms ("recommender", "click", "margin"). [GLOSSARY.md](GLOSSARY.md) maps each plain term to its textbook name.
-- **Tested on:** macOS (Apple M4), Python 3.11.14, packages in `requirements-lock.txt`; setup from `requirements.txt` was verified in a fresh environment.
