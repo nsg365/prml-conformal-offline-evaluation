@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from demo_launch import make_decision, run_window  # noqa: E402
 
-FIGURES = ROOT / "paper/figures"
+FIGURES = ROOT / "figures"
 # Validated dark-surface palette (same hues as the paper's figures).
 COLOURS = {"usual": "#d95926", "cautious": "#c98500", "ours": "#3987e5"}
 SURFACE, INK, MUTED, GRID = "#1a1a19", "#f0efec", "#c3c2b7", "#33332f"

@@ -1,6 +1,6 @@
 data/raw/
 data/processed/
-experiments/semisynthetic_parts/
+results/experiments/semisynthetic_parts/
 logs/
 .venv/
 __pycache__/
@@ -22,3 +22,4 @@ slides/*.fls
 slides/*.fdb_latexmk
 slides/*.vrb
 paper/*.out
+build/

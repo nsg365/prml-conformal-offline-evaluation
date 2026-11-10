@@ -53,7 +53,7 @@ Any estimate has error, so everything depends on the size of the margin. The usu
 
 \begin{figure*}[t]
 \centering
-\input{figures/pipeline}
+\input{../figures/pipeline}
 \caption{Overview. A classifier-based estimator turns the current recommender's log into an estimated improvement and its standard error. The record of past decisions gives the learned margin. Blue boxes contain the machine-learning models.}
 \label{fig:pipeline}
 \end{figure*}
@@ -111,7 +111,7 @@ If past estimates were honest, $\hat q\approx1.645$; on real data it was about 2
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/error_histogram.pdf}
+\includegraphics[width=\columnwidth]{../figures/error_histogram.pdf}
 \caption{Overshoot scores $s_j$ of the 84 real decisions (combined estimator). The usual margin (orange) is passed far more often than 5\% of the time; the learned margin (blue) is set so that only 5\% lie beyond it.}
 \label{fig:hist}
 \end{figure}
@@ -137,14 +137,14 @@ $\Delta_{\mathrm{new}} \ge L$ exactly when $s_{\mathrm{new}} \le \hat q$. Under 
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/hourly_drift.pdf}
+\includegraphics[width=\columnwidth]{../figures/hourly_drift.pdf}
 \caption{Click rate of the two recommenders by hour (``all items'' campaign). Behaviour changes within each 12-hour window, which a standard error that treats every row as independent does not capture.}
 \label{fig:drift}
 \end{figure}
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/decision_chart.pdf}
+\includegraphics[width=\textwidth]{../figures/decision_chart.pdf}
 \caption{Every real decision in the main (``all items'') campaign. Bars run from the estimate down to estimate $-$ margin; launch if the bottom of the bar is above zero. A circle marks a miss: the true improvement lies below the bar. The learned margin here is computed from the other two campaigns. Across all three campaigns the usual margin misses 16 of 84 decisions and the learned margin 4 of 84.}
 \label{fig:decisions}
 \end{figure*}
@@ -153,14 +153,14 @@ $\Delta_{\mathrm{new}} \ge L$ exactly when $s_{\mathrm{new}} \le \hat q$. Under 
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/coverage_vs_history.pdf}
+\includegraphics[width=\columnwidth]{../figures/coverage_vs_history.pdf}
 \caption{Controlled experiments: coverage against the number of past decisions. The learned margin meets the 0.95 target from $m=20$; the usual margin stays below it for both estimators.}
 \label{fig:history}
 \end{figure}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/adaptive_gain.pdf}
+\includegraphics[width=\columnwidth]{../figures/adaptive_gain.pdf}
 \caption{Adaptive learned margin (boosted-tree difficulty model): power gained over the plain learned margin. Below 0 it hurts, above 0 it helps; it pays off only with a large history ($m{=}2{,}240$ uses five other datasets). A ridge difficulty model behaves similarly. Coverage stays within 0.91--1.00.}
 \label{fig:adaptive}
 \end{figure}

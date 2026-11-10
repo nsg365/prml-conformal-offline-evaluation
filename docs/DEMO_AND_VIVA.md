@@ -1,5 +1,7 @@
 # Live demo and viva preparation
 
+> Written for the evaluation on 10 November 2026. Everything still works the same way; use it whenever you need to demo the project again.
+
 Read [GLOSSARY.md](GLOSSARY.md) alongside this if any word is unfamiliar.
 
 ## The whole project in plain words (learn this by heart)
@@ -35,7 +37,7 @@ Examiners can also pick any campaign, window (4–13), direction and estimator t
 ### Before the viva (once, the day before)
 1. Charge the laptop; the demo needs no internet.
 2. Run the full demo once (steps below) to make sure everything works on your machine.
-3. Open `deliverables/slides.pdf` and `deliverables/paper.pdf` so they are ready to show.
+3. Open `slides/main.pdf` and `paper/main.pdf` so they are ready to show.
 4. Make the terminal font large (Cmd and + in Terminal) so examiners can read it.
 
 ### Starting

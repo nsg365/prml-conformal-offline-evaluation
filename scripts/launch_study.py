@@ -33,7 +33,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src import decision  # noqa: E402
 
-REPORTS = ROOT / "reports"
+RESULTS = ROOT / "results"
 ALPHAS = (0.05, 0.10)
 BASELINE_RULES = ("wald", "bootstrap", "emp_bernstein")
 DIAGNOSTICS = ["ess_fraction", "weight_cv", "max_weight", "mean_weight"]
@@ -231,13 +231,13 @@ def main() -> None:
     parser.add_argument("--obd-min-windows", type=int, default=4)
     parser.add_argument("--recency-decay", type=float, default=0.8)
     parser.add_argument("--seed", type=int, default=0)
-    parser.add_argument("--obd-file", default="experiments/obd_experiments.parquet")
+    parser.add_argument("--obd-file", default="results/experiments/obd_experiments.parquet")
     parser.add_argument("--skip-semi", action="store_true")
     args = parser.parse_args()
-    out = REPORTS / "launch_study"
+    out = RESULTS / "launch_study"
     out.mkdir(parents=True, exist_ok=True)
 
-    semi_path = ROOT / "experiments/semisynthetic_experiments.parquet"
+    semi_path = ROOT / "results/experiments/semisynthetic_experiments.parquet"
     if semi_path.exists() and not args.skip_semi:
         semi = pd.read_parquet(semi_path)
         within, cross, shift = [], [], []

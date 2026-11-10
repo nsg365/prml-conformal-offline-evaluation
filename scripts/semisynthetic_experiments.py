@@ -35,7 +35,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src import decision, ope  # noqa: E402
 
-OUT = ROOT / "experiments/semisynthetic_experiments.parquet"
+OUT = ROOT / "results/experiments/semisynthetic_experiments.parquet"
 # OpenML data ids.
 DATASETS = {"letter": 6, "pendigits": 32, "optdigits": 28, "satimage": 182, "mfeat-factors": 12, "segment": 36}
 BASE_RATE, LIFT = 0.05, 0.85

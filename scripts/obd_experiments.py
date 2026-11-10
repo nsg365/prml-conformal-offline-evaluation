@@ -36,7 +36,7 @@ sys.path.insert(0, str(ROOT))
 from src import decision, ope  # noqa: E402
 
 PROC = ROOT / "data/processed"
-OUT = ROOT / "experiments/obd_experiments.parquet"
+OUT = ROOT / "results/experiments/obd_experiments.parquet"
 LIGHT = ["timestamp", "item_id", "position", "click", "propensity_score",
          "user_feature_0", "user_feature_1", "user_feature_2", "user_feature_3"]
 USER = ["user_feature_0", "user_feature_1", "user_feature_2", "user_feature_3"]

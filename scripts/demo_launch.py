@@ -3,7 +3,7 @@
 
 1. Estimates the improvement live on one real Open Bandit window.
 2. Learns the margin from decisions in earlier windows (the "past A/B tests"),
-   loaded from experiments/obd_experiments.parquet.
+   loaded from results/experiments/obd_experiments.parquet.
 3. Prints each rule's estimate minus margin, its launch decision, and the true
    result measured on real traffic, which the rules never see.
 
@@ -27,7 +27,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from src import decision  # noqa: E402
 from obd_experiments import run_campaign  # noqa: E402
 
-HISTORY = ROOT / "experiments/obd_experiments.parquet"
+HISTORY = ROOT / "results/experiments/obd_experiments.parquet"
 
 
 def run_window(campaign: str, window: int) -> list[dict]:

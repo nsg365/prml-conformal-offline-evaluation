@@ -1,5 +1,7 @@
 # Project plan — Calibrated off-policy launch decisions
 
+> **Historical document.** This is the original design and literature check, written on 24 Oct 2026 before the experiments were run. Some ideas here (e.g. the drift-aware weighted variant) were tried but left out of the final paper. For what was actually built and found, see the [README](../README.md) and the paper.
+
 **Working title:** *Trust, but Calibrate: Using Past A/B Tests to Make Off-Policy Launch Decisions Reliable*
 
 **Evaluation:** Tuesday, 10 November 2026 (live demo + viva).

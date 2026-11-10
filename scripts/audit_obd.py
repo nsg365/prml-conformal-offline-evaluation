@@ -12,7 +12,7 @@ import pyarrow.parquet as pq
 
 ROOT = Path(__file__).resolve().parents[1]
 PROC = ROOT / "data/processed"
-OUT = ROOT / "reports/obd_audit.json"
+OUT = ROOT / "results/obd_audit.json"
 COLS = ["timestamp", "item_id", "position", "click", "propensity_score"]
 
 

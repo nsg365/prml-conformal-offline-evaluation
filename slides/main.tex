@@ -61,7 +61,7 @@ Is the usual safety margin big enough? \textbf{On real data: no.} It is about ha
 
 \begin{frame}{The method at a glance}
 \centering
-\resizebox{!}{0.68\textheight}{\input{figures/pipeline}}
+\resizebox{!}{0.68\textheight}{\input{../figures/pipeline}}
 \vspace{0.5em}
 
 \raggedright
@@ -100,7 +100,7 @@ If the new decision is like the past ones, the margin is big enough at least 95\
 \begin{frame}{Why 1.645 is too small: the real record}
 \begin{columns}[c]
 \begin{column}{0.6\textwidth}
-\includegraphics[width=\textwidth]{figures/error_histogram.pdf}
+\includegraphics[width=\textwidth]{../figures/error_histogram.pdf}
 \end{column}
 \begin{column}{0.4\textwidth}
 \begin{itemize}
@@ -174,7 +174,7 @@ Combined (GBT) & \textcolor{warn}{1.80} & \textcolor{warn}{1.76} & 1.13\\
 
 \begin{frame}{Why: user behaviour drifts hour to hour}
 \centering
-\includegraphics[width=0.75\textwidth]{figures/hourly_drift.pdf}
+\includegraphics[width=0.75\textwidth]{../figures/hourly_drift.pdf}
 
 \raggedright
 \begin{itemize}
@@ -186,7 +186,7 @@ Combined (GBT) & \textcolor{warn}{1.80} & \textcolor{warn}{1.76} & 1.13\\
 
 \begin{frame}{Finding 2: every real decision, one campaign}
 \centering
-\includegraphics[width=\textwidth]{figures/decision_chart.pdf}
+\includegraphics[width=\textwidth]{../figures/decision_chart.pdf}
 
 \raggedright
 \small Bars: estimate down to estimate $-$ margin. Launch if the bar's bottom is above 0. Circle: the truth fell below the bar (a miss).
@@ -196,7 +196,7 @@ All three campaigns: usual margin misses \textcolor{warn}{\textbf{16/84}}, learn
 \begin{frame}{Finding 2: the learned margin is safe on real data}
 \begin{columns}[c]
 \begin{column}{0.47\textwidth}
-\includegraphics[width=\textwidth]{figures/obd_temporal.pdf}
+\includegraphics[width=\textwidth]{../figures/obd_temporal.pdf}
 \end{column}
 \begin{column}{0.53\textwidth}
 Each window uses only \emph{earlier} windows as history.
@@ -214,7 +214,7 @@ Cost: fewer launches (13--47\% vs 63--83\%). That is the price of honest uncerta
 \begin{frame}{Finding 3: controlled experiments with exact truth}
 \begin{columns}[c]
 \begin{column}{0.47\textwidth}
-\includegraphics[width=\textwidth]{figures/semi_coverage_power.pdf}
+\includegraphics[width=\textwidth]{../figures/semi_coverage_power.pdf}
 \end{column}
 \begin{column}{0.53\textwidth}
 \begin{itemize}
@@ -231,7 +231,7 @@ Cost: fewer launches (13--47\% vs 63--83\%). That is the price of honest uncerta
 \begin{frame}{How much history is needed?}
 \begin{columns}[c]
 \begin{column}{0.58\textwidth}
-\includegraphics[width=\textwidth]{figures/coverage_vs_history.pdf}
+\includegraphics[width=\textwidth]{../figures/coverage_vs_history.pdf}
 \end{column}
 \begin{column}{0.42\textwidth}
 \begin{itemize}
@@ -253,7 +253,7 @@ Cost: fewer launches (13--47\% vs 63--83\%). That is the price of honest uncerta
 \end{itemize}
 \end{column}
 \begin{column}{0.55\textwidth}
-\includegraphics[width=\textwidth]{figures/adaptive_gain.pdf}
+\includegraphics[width=\textwidth]{../figures/adaptive_gain.pdf}
 
 \textbf{Helps only with lots of history.} With few past decisions, the plain version is better.
 \end{column}

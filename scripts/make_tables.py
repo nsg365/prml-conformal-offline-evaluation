@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
-STUDY = ROOT / "reports/launch_study"
+STUDY = ROOT / "results/launch_study"
 OUT = ROOT / "paper/tables"
 # The four core estimators, in plain language (see the terms table in the paper).
 CONFIGS = [("dm", "logreg", "Click model (LR)"), ("dm", "hgb", "Click model (GBT)"), ("ips", "none", "Reweighting"),
@@ -67,7 +67,7 @@ def main() -> None:
     (SLIDE_TABLES / "results.tex").write_text(tabular_only(lines))
 
     # Real-data error inflation: realised error spread relative to reported uncertainty.
-    exp = pd.read_parquet(ROOT / "experiments/obd_experiments.parquet")
+    exp = pd.read_parquet(ROOT / "results/experiments/obd_experiments.parquet")
     labels = {(est, rm): name for est, rm, name in CONFIGS}
     rows = []
     for key, name in labels.items():

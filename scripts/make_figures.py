@@ -20,13 +20,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src import decision  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPERIMENTS = ROOT / "experiments/obd_experiments.parquet"
+EXPERIMENTS = ROOT / "results/experiments/obd_experiments.parquet"
 PROCESSED = ROOT / "data/processed"
 USUAL, OURS, BERN, HOUR, MAGENTA = "#eb6834", "#2a78d6", "#eda100", "#1baf7a", "#e87ba4"
 HIST, SURFACE = "#9ec5f4", "white"
 DARK = False  # set by use_dark_theme(); dark PNGs are only used by the web app
-STUDY = ROOT / "reports/launch_study"
-OUT = ROOT / "paper/figures"
+STUDY = ROOT / "results/launch_study"
+OUT = ROOT / "figures"
 
 # Validated categorical palette (fixed slot order) with a marker per rule so
 # identity never depends on colour alone.
